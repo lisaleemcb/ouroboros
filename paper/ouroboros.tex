@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\begin{document}
+
+\title{Ouroboros Update}
+\author{Lisa McBride}
+\date{}
+\maketitle
+
+
+\section{Models}
+So - the goal of the current phase is to try and understand the theory of ouroboros, and see if it can provide an improvement over the current methodology. The fundamental figure of merit that we would like to understand is the signal-to-noise ratio (SNR).
+
+For the noise power, we can use the expression:
+
+\begin{equation}
+P_{noise} = kBT_{n}
+\end{equation}
+
+To that effect, we would like to have a closed form expression for the noise temperature of the circuit.  Depending on the paper, there are several possible expressions to choose from. (We hope- but haven't been able to confirm- that these are different because of the underlying assumptions that go into them.)
+
+Japanese Paper:
+   
+\begin{equation}
+T_{n} = \frac{Q_{0}}{Q_{00}}T_{0} + Q_{0}(\sqrt{\frac{1}{Q_{e1}}} - \sqrt{\frac{G}{Q_{e2}}})^{2}T_{b} + \frac{Q_{0}}{Q_{e2}} GT_{a}
+\end{equation}
+
+Italian Paper:
+
+\begin{equation}
+T_{equ} = T_{a}G_{a}\frac{|S^{i}_{23}|^{2}}{1-|S^{i}_{23}|^{2}}
+\end{equation}
+
+We plotted these against each other.  In order to do this, they needed to be translated into the same notation. This was hard to do because the labeling was a little vague. But we believe that in the same notation, these expressions look like-
+
+\begin{equation}
+T_{n,Japanese} = \beta_{0}T_{0} + (\beta_{a} - \beta_{c}\sqrt{G})^{2}T_{b} + \beta_{c}^{2}G
+\end{equation}
+
+\begin{equation}
+T_{n,Italian} = (T_{0} + T_{a}G\beta_{a})\frac{\beta_{c}}{|1-c\sqrt{G}e^{i\theta}|^{2}}
+\end{equation}
+
+where the betas are various coupling constants.  It is important to note that both expressions have To for the cavity temperature, and Ta for the amplifier temperature, but only the Japanese paper has a Tb, which we we're not entirely sure about (but perhaps $T_{a} + T_{b} = T_{amp}$).
+
+These were plotted for some semi-arbitrary values of the betas, phase, and temperatures, with the solid lines being the Italian expression, and the dotted being the Japanese expression. (I have no idea why the legend decided not to print the betas for the red line, and I wasted the better part of an hour trying to fix it. They are the same as for the other lines, set to .5)
+Inline image 3
+
+Additionally, we wanted to compare this to Gray's back of the envelope analysis that in some regimes the noise can go as either, Inline image 4 or Inline image 5.  To do this we set all the constants to unity and just looked at the G dependence.
+Inline image 6
+
+\section{Measurements}
+
+\section{Technical Notes}
+
+\subsection{Further notes on Japanese paper}
+
+Ana and I were able to reproduce the off-diagonal elements of Eq. 1, for the on-resonance case, by using an expression for the frequency dependent impedance from Principles of microwave circuits / edited by C.G. Montgomery, R.H. Dicke and E.M. Purcell, and the relation that Inline image 7Inline image 4, and the assumption that the ratio's of Q's were equal to the coupling constants of various ports.
+
+\subsection{Further notes on Italian paper}
+Ana and I were able to reproduce Eq. 1 by using the expression Inline image 9. 
+
+\end{document}

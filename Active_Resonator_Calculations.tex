@@ -1,0 +1,770 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Active\_Resonator\_Calculations}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} \PY{n}{inline}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}
+         \PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k+kn}{import} \PY{n}{interpolate}
+         \PY{n}{matplotlib}\PY{o}{.}\PY{n}{use}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{cairo}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib.font\PYZus{}manager} \PY{k+kn}{as} \PY{n+nn}{fm}
+         \PY{n}{font} \PY{o}{=} \PY{n}{fm}\PY{o}{.}\PY{n}{FontProperties}\PY{p}{(}
+                 \PY{n}{family} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{Gill Sans}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fname} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{/Library/Fonts/GillSans.ttc}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{k+kn}{import} \PY{n+nn}{prettyplotlib} \PY{k+kn}{as} \PY{n+nn}{ppl}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{mpld3}
+         \PY{k+kn}{from} \PY{n+nn}{IPython.display} \PY{k+kn}{import} \PY{n}{Image}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+         \PY{c}{\PYZsh{}from sympy.interactive import printing}
+         \PY{c}{\PYZsh{}printing.init\PYZus{}printing(use\PYZus{}latex=True)}
+         \PY{n}{Image}\PY{p}{(}\PY{n}{filename}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{afr\PYZus{}circuit.png}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}31}]:}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Active_Resonator_Calculations_files/Active_Resonator_Calculations_0_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    This code will compare simulation results for the Active Feedback
+Resonator (depicted above) with measurements.
+
+The main output will be modeling the predicted behavior of the noise and
+snr vs Q in the case of coherent and incoherent noise.
+
+Table of Contents:
+
+\hyperref[theory]{Theory}
+
+\hyperref[simulations]{Simulations}
+
+\hyperref[measurements]{Measurements}
+
+\hyperref[comparison]{Comparison}
+
+\hyperref[literature]{Literature Review}
+
+
+    \subsection{Theory }
+
+
+    Referencing the image above, we use the following notation: \(N_0\) is
+the cavity thermal noise power, \(N_b\) is the amplifier noise power
+traveling away from the amplifier, and \(N_a\) is the noise power
+traveling towards the amplifier (referenced to the input of the
+amplifier). I use lower case to denote the respective voltages, so
+\(n_0\) is the cavity voltage noise, and \(|n_0|^2 = N_0\), etc.
+\(\sqrt{G}\) is the voltage gain of the amplifier, with the effective
+gain of the circuit is given by \(\sqrt{G}S_{23}\). The relationship
+between the input amplitudes \(a\) and output amplitudes \(b\) is given
+by the S parameter matrix:
+
+\[
+S = \left(\begin{array}{ccc}
+-1 + 2Q_L/Q_{00} & 2 Q_L/\sqrt{Q_{00}Q_{1}} & 2Q_L/\sqrt{Q_{00} Q_2} \\
+2 Q_L/\sqrt{Q_{00}Q_{1}} & -1 + 2Q_L/Q_{1} & 2Q_L/\sqrt{Q_{1} Q_2} \\
+2 Q_L/\sqrt{Q_{00}Q_{2}} & 2Q_L/\sqrt{Q_{1} Q_2} & -1 + 2Q_L/Q_{2} \\
+\end{array}\right)
+\]
+
+(NOTE: there is a typo in the afr\_noise paper by Ishikawa and co. -
+their \(S_{13}\) entry is wrong.)
+
+My understanding of the notation here is that \(Q_{00}\) is the unloaded
+Q of the cavity, \(Q_L\) is the loaded Q of the cavity, \(Q_1\) and
+\(Q_2\) are quality factors parameterizing the coupling ports, and
+\(Q_0\) is the active Q (unloaded).
+
+In the language of coupling coefficients,
+\(\beta_1 = \sqrt{\frac{Q_{00}}{Q_1}}\) and
+\(\beta_2 = \sqrt{\frac{Q_{00}}{Q_2}}\).
+
+The relationship between the active Q and the other quality factors is
+given by:
+
+\begin{align}
+\frac{1}{Q_0} = \frac{1}{Q_L} - 2\sqrt{\frac{G}{Q_1 Q_2}}.
+\end{align}
+
+Physically, the above equation tells us that a loaded cavity quality
+factor will be further modified by the introduction of gain, which will
+act as a negative resistance. When
+
+\[
+\sqrt{G} = \frac{\sqrt{Q_1 Q_2}}{2 Q_L}
+\]
+
+then the active quality factor goes to infinity, and the circuit becomes
+an oscillator. The equation above is the same as the condition that
+\(S_{23}\sqrt{G} = 1\).
+
+Now that we've established our notation, we want to know what the output
+power would look like. If we take the output from port 1 (\(b_1\)) as
+the voltage we will be listening to, then \(b_1\) has the form:
+
+\[
+b_1(t)= S_{21} n_0 + S_{22} n_b + S_{23} \sqrt{G} \big(b_1(t- t_0) + n_a \big)
+\]
+
+Note that we \(b_1\) is evaluated at two different times in this
+equation - once at the current time \(t\) but also at \(t-t_0\), where
+\(t_0 = L/c\) is the time it takes for a wave at port 1 to traverse the
+circuit's length \(L\).
+
+The time-averaged power we expect then is:
+
+\[
+<|b_1(t)|^2> + |S_{23}|^2 G <|b_1(t-t_0)|^2> - 2 S_{23} \sqrt{G} < b_1^*(t)b_1(t-t_0)> = |S_{21}|^2 N_0 + |S_{22}|^2 N_b + |S_{23}|^2 G N_a.
+\]
+
+where we assumed that there is no correlation between the various noise
+sources, e.g. \(<n_0 n_b> = 0\).
+
+Let us assume a steady state solution such that
+\(<|b(t)|^2> = <|b(t-t_0)|^2>\). The autocorrelation of the two
+\(b_1(t)\) terms is given by (NOTE: ask Gray again about how this was
+gotten):
+
+\[
+<b_1^*(t)b_1(t-t_0)> = <|b_1(t)|^2> e^{-\omega t_0/Q}
+\]
+
+I drop the subscript \(1\) on \(b(t)\) for simplicity and denote it by
+\(b_{noise}\). We can rewrite the output power (CHECK: hopefully my
+transform to frequency space is not sketchy) as
+
+\[
+<|b_{noise}(\omega)|^2> = \frac{|S_{21}|^2 N_0 + |S_{22}|^2 N_b + |S_{23}|^2 G N_a}{1 + |S_{23}|^2 G - 2S_{23}\sqrt{G}e^{-\omega t_0/Q}}.
+\]
+
+Finally, we can parametrize any additional phase shift in the circuit by
+rewriting \(\sqrt{G} \rightarrow \sqrt{G}e^{i\theta}\), so
+
+\[
+<|b_{noise}(\omega)|^2> = \frac{|S_{21}|^2 N_0 + |S_{22}|^2 N_b + |S_{23}|^2 G N_a}{1 + |S_{23}|^2 G - 2S_{23}\sqrt{G}e^{-\omega t_0/Q - i\theta}}.
+\]
+
+Note that we've derived the output noise power in the case of noise
+signal, but the output power when a signal is injected into the system
+(ie \(a_0 = \sqrt{\beta_0} p\)) would only be modified to be:
+
+\[
+<|b_{signal}(\omega)|^2> =\frac{|S_{21}|^2 \beta_0 P}{1 + |S_{23}|^2 G - 2S_{23}\sqrt{G}e^{-\omega t_0/Q - i\theta}}
+\]
+
+so the SNR would be:
+
+\[
+SNR = \frac{<|b_{signal}(\omega)|^2>}{<|b_{noise}(\omega)|^2>} = \frac{|S_{21}|^2 \beta_0 P}{|S_{21}|^2 N_0 + |S_{22}|^2 N_b + |S_{23}|^2 G N_a}
+\]
+
+\ldots{} this doesn't make any sense. Not sure what I did wrong here.
+
+A different approach would be to recognize that the active Q (\(Q_0\))
+gains by one factor of the multiplier:
+
+\[
+Q_0 = Q_L(1 - \sqrt{G_l})^{-1}
+\]
+
+where \(G_l\) is the loop gain (\(\sqrt{G_l} = S_{23}\sqrt{G}\)).
+
+Then notice that the real gain, (not just through one pass), is given by
+
+\(A = n_{cav} + A\sqrt{G_l}\) so \(A = n_{cav}/(1-\sqrt{G_l})\).
+
+so if that's the voltage all around gain, then the power gain (all
+throughout) is \(P = N_{cav}/(1-\sqrt{G_l})^2\).
+
+Therefore, for \(t_0 = 0\),
+
+\[
+SNR = \frac{P_{in} ( 1- \sqrt{G_l})^2}{(1-\sqrt{G_l})^2 (T_{cav} + G_l T_a)} = \frac{P_{in}}{(T_{cav} + G_l T_a)}
+\]
+
+and for \(t_0 = 2.5\) \(\mu\)seconds,
+
+\[
+SNR = \frac{P_{in} ( 1 + G_l)}{(1-\sqrt{G_l})^2 (T_{cav} + G_l T_a)}
+\]
+
+In any case, for typical experimental parameters, we can plot the noise
+vs Q for different delay times, which correspond to our measurement
+configurations with and without the delay line in. See below.
+
+
+    \subsection{Simulation Plots }
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}82}]:} \PY{c}{\PYZsh{}assuming the phase shift is zero...}
+         \PY{n}{fig}\PY{p}{,} \PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{ax2}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{set\PYZus{}size\PYZus{}inches}\PY{p}{(}\PY{l+m+mf}{12.5}\PY{p}{,}\PY{l+m+mf}{7.5}\PY{p}{)}
+         \PY{n}{gains} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{99}\PY{p}{,} \PY{o}{.}\PY{l+m+mo}{01}\PY{p}{)}
+         \PY{n}{snr} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{500.} \PY{o}{/} \PY{p}{(}\PY{l+m+mf}{300.} \PY{o}{+} \PY{n}{g} \PY{o}{*} \PY{l+m+mf}{300.}\PY{p}{)} \PY{k}{for} \PY{n}{g} \PY{o+ow}{in} \PY{n}{gains}\PY{p}{]} \PY{c}{\PYZsh{}t\PYZus{}0 = 0}
+         \PY{n}{ppl}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{gains}\PY{p}{,} \PY{n}{snr}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{SNR}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{No delay line \PYZhy{} simulation}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{snr} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{500.} \PY{o}{*} \PY{p}{(}\PY{l+m+mf}{1.} \PY{o}{+} \PY{n}{g}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mf}{300.} \PY{o}{+} \PY{n}{g} \PY{o}{*} \PY{l+m+mf}{300.}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{g}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{k}{for} \PY{n}{g} \PY{o+ow}{in} \PY{n}{gains}\PY{p}{]} \PY{c}{\PYZsh{}t\PYZus{}0 = .5 microseconds}
+         \PY{n}{ppl}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{ax2}\PY{p}{,} \PY{n}{gains}\PY{p}{,} \PY{n}{snr}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax2.set\PYZus{}yscale(\PYZsq{}SNR\PYZsq{})}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Loop Gain}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Delay line \PYZhy{} simulation}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{simulation\PYZus{}snr\PYZus{}zoomedin.png}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Active_Resonator_Calculations_files/Active_Resonator_Calculations_5_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    \\*\textit{Experimental Values:}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{Q\PYZus{}cav} \PY{o}{=} \PY{l+m+mf}{1200.}
+         \PY{n}{Q\PYZus{}1} \PY{o}{=} \PY{n}{Q\PYZus{}cav}
+         \PY{n}{Q\PYZus{}2} \PY{o}{=} \PY{l+m+mi}{15000}
+         \PY{n}{Q\PYZus{}L} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{Q\PYZus{}cav} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{Q\PYZus{}1} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{Q\PYZus{}2}\PY{p}{)}
+         \PY{n}{omega\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{l+m+mf}{2.256e9}
+         \PY{n}{t\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{/} \PY{l+m+mf}{1.e9} \PY{c}{\PYZsh{} no phase delay, with phase delay t\PYZus{}0 = 1 / 1.e6}
+         \PY{n}{theta} \PY{o}{=} \PY{l+m+mi}{0} \PY{c}{\PYZsh{}set additional phase shift equal to 0}
+         
+         \PY{n}{N\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{300} \PY{c}{\PYZsh{}kelvin}
+         \PY{n}{N\PYZus{}a} \PY{o}{=} \PY{l+m+mi}{300} \PY{c}{\PYZsh{}our amplifiers have a NF of 3 dB}
+         \PY{n}{N\PYZus{}b} \PY{o}{=} \PY{l+m+mi}{300} \PY{c}{\PYZsh{}not sure how to measure the backwards noise?}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{S} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{Q\PYZus{}L}\PY{o}{/}\PY{n}{Q\PYZus{}cav} \PY{p}{,} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{Q\PYZus{}L}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Q\PYZus{}cav} \PY{o}{*} \PY{n}{Q\PYZus{}1}\PY{p}{)} \PY{p}{,} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{Q\PYZus{}L}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Q\PYZus{}cav} \PY{o}{*} \PY{n}{Q\PYZus{}2}\PY{p}{)}\PY{p}{]}\PY{p}{,}
+            \PY{p}{[}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{Q\PYZus{}L}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Q\PYZus{}cav} \PY{o}{*} \PY{n}{Q\PYZus{}1}\PY{p}{)}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{Q\PYZus{}L}\PY{o}{/}\PY{n}{Q\PYZus{}1}\PY{p}{,} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{Q\PYZus{}L}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Q\PYZus{}1} \PY{o}{*} \PY{n}{Q\PYZus{}2}\PY{p}{)}\PY{p}{]}\PY{p}{,}
+            \PY{p}{[}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{Q\PYZus{}L}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Q\PYZus{}cav} \PY{o}{*} \PY{n}{Q\PYZus{}2}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{Q\PYZus{}L}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Q\PYZus{}1} \PY{o}{*} \PY{n}{Q\PYZus{}2}\PY{p}{)}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{Q\PYZus{}L}\PY{o}{/}\PY{n}{Q\PYZus{}2}\PY{p}{]}\PY{p}{]}
+        
+        \PY{k}{def} \PY{n+nf}{active\PYZus{}Q}\PY{p}{(}\PY{n}{G}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{l+m+mi}{1} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{Q\PYZus{}L} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{G}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Q\PYZus{}1} \PY{o}{*} \PY{n}{Q\PYZus{}2}\PY{p}{)}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{output\PYZus{}power}\PY{p}{(}\PY{n}{G}\PY{p}{,} \PY{n}{Q}\PY{p}{,} \PY{n}{t}\PY{p}{)}\PY{p}{:}
+            \PY{n}{numer} \PY{o}{=} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{N\PYZus{}0} \PY{o}{+} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{N\PYZus{}b} \PY{o}{+} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{G} \PY{o}{*} \PY{n}{N\PYZus{}a}
+            \PY{n}{denom} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{+} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{G} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{G}\PY{p}{)} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(} \PY{o}{\PYZhy{}} \PY{n}{omega\PYZus{}0} \PY{o}{*} \PY{n}{t} \PY{o}{/} \PY{n}{Q}\PY{p}{)} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{theta}\PY{p}{)}
+            \PY{k}{try}\PY{p}{:}
+                \PY{k}{return} \PY{n}{numer} \PY{o}{/} \PY{n}{denom}
+            \PY{k}{except} \PY{n+ne}{Exception} \PY{k}{as} \PY{n}{e}\PY{p}{:}
+                \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{e}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{gains} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}
+        \PY{n}{q\PYZus{}s} \PY{o}{=} \PY{p}{[}\PY{n}{active\PYZus{}Q}\PY{p}{(}\PY{n}{g}\PY{p}{)} \PY{k}{for} \PY{n}{g} \PY{o+ow}{in} \PY{n}{gains}\PY{p}{]}
+        \PY{n}{t} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{]}
+        \PY{n}{powers\PYZus{}nodelay} \PY{o}{=} \PY{p}{[}\PY{n}{output\PYZus{}power}\PY{p}{(}\PY{n}{g}\PY{p}{,} \PY{n}{q}\PY{p}{,} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{k}{for} \PY{n}{g}\PY{p}{,} \PY{n}{q} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{gains}\PY{p}{,} \PY{n}{q\PYZus{}s}\PY{p}{)}\PY{p}{]}
+        \PY{n}{powers\PYZus{}delay} \PY{o}{=} \PY{p}{[}\PY{n}{output\PYZus{}power}\PY{p}{(}\PY{n}{g}\PY{p}{,} \PY{n}{q}\PY{p}{,} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{k}{for} \PY{n}{g}\PY{p}{,} \PY{n}{q} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{gains}\PY{p}{,} \PY{n}{q\PYZus{}s}\PY{p}{)}\PY{p}{]}
+        
+        \PY{n}{fig}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{ax2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{ax3}\PY{p}{,} \PY{n}{ax4}\PY{p}{)}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n}{fig}\PY{o}{.}\PY{n}{set\PYZus{}size\PYZus{}inches}\PY{p}{(}\PY{l+m+mf}{17.5}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}
+        
+        \PY{k}{print} \PY{n+nb}{len}\PY{p}{(}\PY{n}{gains}\PY{p}{)}
+        \PY{k}{print} \PY{n+nb}{len}\PY{p}{(}\PY{n}{powers\PYZus{}nodelay}\PY{p}{)}
+        \PY{k}{print} \PY{n+nb}{len}\PY{p}{(}\PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{gains}\PY{p}{)}
+        \PY{k}{print} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+        
+        \PY{k}{print} \PY{n}{gains}
+        \PY{n+nb}{type}\PY{p}{(}\PY{n}{gains}\PY{p}{)}
+        \PY{k}{print} \PY{n}{powers\PYZus{}nodelay}
+        \PY{k}{print} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{gains}
+        \PY{k}{print} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+        
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{q\PYZus{}s}\PY{p}{,} \PY{n}{powers\PYZus{}nodelay}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{ko}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZdl{}}\PY{l+s}{\PYZbs{}}\PY{l+s}{circ\PYZdl{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Q}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Noise (Kelvin)}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Noise vs Q for t = }\PY{l+s+si}{\PYZpc{}.1e}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        
+        
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{gains}\PY{p}{,} \PY{n}{powers\PYZus{}nodelay}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{ko}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZdl{}}\PY{l+s}{\PYZbs{}}\PY{l+s}{circ\PYZdl{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Effective Gain \PYZdl{}|S\PYZus{}\PYZob{}23\PYZcb{}|\PYZca{}2 G\PYZdl{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Noise (Kelvin)}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Noise vs Voltage for t = }\PY{l+s+si}{\PYZpc{}.1e}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        
+        \PY{n}{ax3}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{q\PYZus{}s}\PY{p}{,} \PY{n}{powers\PYZus{}delay}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{ko}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZdl{}}\PY{l+s}{\PYZbs{}}\PY{l+s}{circ\PYZdl{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Q}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Noise (Kelvin)}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Noise vs Q for t = }\PY{l+s+si}{\PYZpc{}.1e}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        
+        
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{gains}\PY{p}{,} \PY{n}{powers\PYZus{}delay}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{ko}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZdl{}}\PY{l+s}{\PYZbs{}}\PY{l+s}{circ\PYZdl{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Effective Gain \PYZdl{}|S\PYZus{}\PYZob{}23\PYZcb{}|\PYZca{}2 G\PYZdl{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Noise (Kelvin)}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Noise vs Voltage for t = }\PY{l+s+si}{\PYZpc{}.1e}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+        \PY{n}{fig}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{theoretical\PYZus{}noise\PYZus{}behavior.png}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Active_Resonator_Calculations_files/Active_Resonator_Calculations_9_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    \subsection{Measurements }
+
+
+    Our actual setup used a delay line (from Teledyne) which added a delay
+of \(2.5\) \(\mu\)seconds.
+
+We had a variable attenuator as part of the gain scheme, which let us
+adjsut the total gain and thereby the active Q. There was also a
+variable phase shifter which we adjusted to find the maximum Q at any
+given gain setting.
+
+The procedure was as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Send in power from the network analyzer to the circuit.
+\item
+  Adjust the power to the variable phase shifter until the measured Q
+  was maximized.
+\item
+  Record the Q and cavity resonance.
+\item
+  Turn off power from the network analyzer by toggling two switches.
+\item
+  Measure the noise power spectral density of the circuit as displayed
+  on the network analyzer at the cavity resonance.
+\item
+  Send in a signal (typicaly -40 dBm) into the circuit at the cavity
+  resonance. Record the power spectral density with the signal on.
+\item
+  Obtain the SNR by subtracting the linear power spectral density
+  measured when the signal was on, vs when it was off.
+\item
+  Adjust the power to the variable attenuator and repeat steps 1-7.
+\end{enumerate}
+
+The results of our measurements (MEAS6 was without the phase delay,
+MEAS7 with the phase delay), are shown below. To execute this you will
+need to change the pathname to point to wherever you have saved MEAS6
+and MEAS7.txt
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{fig}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{ax2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{ax3}\PY{p}{,} \PY{n}{ax4}\PY{p}{)}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+        \PY{n}{fig}\PY{o}{.}\PY{n}{set\PYZus{}size\PYZus{}inches}\PY{p}{(}\PY{l+m+mf}{12.5}\PY{p}{,}\PY{l+m+mf}{7.5}\PY{p}{)}
+        \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{/Users/ana/admxactiveresonator/measurements/MEAS7.txt}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{Voltage\PYZus{}7} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n}{Q\PYZus{}7} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}
+        \PY{n}{N} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}
+        \PY{n}{S} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}
+        \PY{n}{Nl\PYZus{}7} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{p}{(}\PY{n}{n}\PY{o}{+}\PY{l+m+mi}{104}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{10.}\PY{p}{)} \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{N}\PY{p}{]}
+        \PY{n}{Sl\PYZus{}7} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{p}{(}\PY{n}{s}\PY{o}{+}\PY{l+m+mi}{104}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{10.}\PY{p}{)} \PY{k}{for} \PY{n}{s} \PY{o+ow}{in} \PY{n}{S}\PY{p}{]}
+        \PY{n}{SNR\PYZus{}7} \PY{o}{=} \PY{p}{[}\PY{n}{s}\PY{o}{/}\PY{n}{n} \PY{k}{for} \PY{n}{s}\PY{p}{,} \PY{n}{n} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{Sl\PYZus{}7}\PY{p}{,} \PY{n}{Nl\PYZus{}7}\PY{p}{)}\PY{p}{]}
+        \PY{c}{\PYZsh{}ax1.plot(Q, SNR,\PYZsq{}bo\PYZsq{}, label=\PYZsq{}snr\PYZsq{})}
+        \PY{n}{ppl}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{Q\PYZus{}7}\PY{p}{,} \PY{n}{Sl\PYZus{}7}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{signal}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ppl}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{Q\PYZus{}7}\PY{p}{,} \PY{n}{Nl\PYZus{}7}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{noise}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{]}\PY{p}{)}
+        \PY{n}{ppl}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{ax1}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{MEAS7 \PYZhy{} delay line}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ppl}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{ax3}\PY{p}{,} \PY{n}{Q\PYZus{}7}\PY{p}{,} \PY{n}{SNR\PYZus{}7}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{red}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{snr}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{c}{\PYZsh{}ax3.set\PYZus{}ylim([0, 300])}
+        \PY{n}{ppl}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{ax3}\PY{p}{)}
+        \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{SNR \PYZhy{} delay line}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{c}{\PYZsh{}ax4.plot(Q, Sl,\PYZsq{}go\PYZsq{}, label=\PYZsq{}signal/phase delay\PYZsq{})}
+        \PY{c}{\PYZsh{}ax4.set\PYZus{}ylim([0, 300])}
+        \PY{c}{\PYZsh{}ax4.legend()}
+        \PY{c}{\PYZsh{}ax4.set\PYZus{}title(\PYZsq{}Signal\PYZsq{})}
+        \PY{c}{\PYZsh{} mpld3.display()}
+        \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{/Users/ana/admxactiveresonator/measurements/MEAS6.txt}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{Voltage\PYZus{}6} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n}{Q\PYZus{}6} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}
+        \PY{n}{N} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}
+        \PY{n}{S} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}
+        \PY{n}{Nl\PYZus{}6} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{p}{(}\PY{n}{n}\PY{o}{+}\PY{l+m+mi}{104}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{10.}\PY{p}{)} \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{N}\PY{p}{]}
+        \PY{n}{Sl\PYZus{}6} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{p}{(}\PY{n}{s}\PY{o}{+}\PY{l+m+mi}{104}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{10.}\PY{p}{)} \PY{k}{for} \PY{n}{s} \PY{o+ow}{in} \PY{n}{S}\PY{p}{]}
+        \PY{n}{SNR\PYZus{}6} \PY{o}{=} \PY{p}{[}\PY{n}{s}\PY{o}{/}\PY{n}{n} \PY{k}{for} \PY{n}{s}\PY{p}{,} \PY{n}{n} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{Sl\PYZus{}6}\PY{p}{,} \PY{n}{Nl\PYZus{}6}\PY{p}{)}\PY{p}{]}
+        \PY{c}{\PYZsh{}ax2.plot(Q, SNR,\PYZsq{}bo\PYZsq{}, label=\PYZsq{}snr\PYZsq{})}
+        \PY{n}{ppl}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{ax2}\PY{p}{,} \PY{n}{Q\PYZus{}6}\PY{p}{,} \PY{n}{Sl\PYZus{}6}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{signal}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ppl}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{ax2}\PY{p}{,} \PY{n}{Q\PYZus{}6}\PY{p}{,} \PY{n}{Nl\PYZus{}6}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{noise}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ppl}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{ax2}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{MEAS6 \PYZhy{} no delay line}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{c}{\PYZsh{}ax3.plot(Q, Nl,\PYZsq{}bo\PYZsq{}, label=\PYZsq{}noise/no phase delay\PYZsq{})}
+        \PY{c}{\PYZsh{}ax3.set\PYZus{}ylim([0, 300])}
+        \PY{c}{\PYZsh{}ax3.legend()}
+        \PY{c}{\PYZsh{}ax3.set\PYZus{}title(\PYZsq{}Noise\PYZsq{})}
+        \PY{n}{ppl}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{ax4}\PY{p}{,}\PY{n}{Q\PYZus{}6}\PY{p}{,} \PY{n}{SNR\PYZus{}6}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{red}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{snr}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{c}{\PYZsh{}ax4.set\PYZus{}ylim([0, 300])}
+        \PY{n}{ppl}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{ax4}\PY{p}{)}
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{SNR \PYZhy{} no delay line}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{fig}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{summary\PYZus{}plots.png}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{c}{\PYZsh{}mpld3.display()}
+        \PY{c}{\PYZsh{}fig.savefig(\PYZsq{}summary\PYZus{}plots.png\PYZsq{})}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Active_Resonator_Calculations_files/Active_Resonator_Calculations_12_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{fig}\PY{p}{,} \PY{p}{(}\PY{n}{ax3}\PY{p}{,} \PY{n}{ax4}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{f} \PY{o}{=} \PY{n}{interpolate}\PY{o}{.}\PY{n}{interp1d}\PY{p}{(}\PY{n}{Voltage\PYZus{}6}\PY{p}{,} \PY{n}{Q\PYZus{}6}\PY{p}{)}
+         \PY{n}{guess\PYZus{}Q\PYZus{}7} \PY{o}{=} \PY{p}{[}\PY{n}{f}\PY{p}{(}\PY{n}{v}\PY{p}{)} \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{v} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{Voltage\PYZus{}7}\PY{p}{)} \PY{k}{if} \PY{n}{Q\PYZus{}7}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{l+m+mf}{60000.}\PY{p}{]}
+         \PY{n}{corresponding\PYZus{}SNR\PYZus{}7} \PY{o}{=} \PY{p}{[}\PY{n}{s} \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{s} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{SNR\PYZus{}7}\PY{p}{)} \PY{k}{if} \PY{n}{Q\PYZus{}7}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{l+m+mf}{60000.}\PY{p}{]}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{set\PYZus{}size\PYZus{}inches}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{,}\PY{l+m+mf}{7.5}\PY{p}{)}
+         \PY{n}{ppl}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{ax3}\PY{p}{,} \PY{n}{guess\PYZus{}Q\PYZus{}7}\PY{p}{,} \PY{n}{corresponding\PYZus{}SNR\PYZus{}7}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{red}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{80}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax3.set\PYZus{}ylim([0, 300])}
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{SNR \PYZhy{} delay line}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontproperties} \PY{o}{=} \PY{n}{font}\PY{p}{,}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{SNR}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontproperties} \PY{o}{=} \PY{n}{font}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZdl{}Q\PYZus{}0\PYZdl{}}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontproperties} \PY{o}{=} \PY{n}{font}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{}ax4.plot(Q, Sl,\PYZsq{}go\PYZsq{}, label=\PYZsq{}signal/phase delay\PYZsq{})}
+         \PY{c}{\PYZsh{}ax4.set\PYZus{}ylim([0, 300])}
+         \PY{c}{\PYZsh{}ax4.legend()}
+         \PY{c}{\PYZsh{}ax4.set\PYZus{}title(\PYZsq{}Signal\PYZsq{})}
+         \PY{c}{\PYZsh{} mpld3.display()9}
+         \PY{n}{ppl}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{ax4}\PY{p}{,}\PY{n}{Q\PYZus{}6}\PY{p}{,} \PY{n}{SNR\PYZus{}6}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{red}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{80}\PY{p}{)}
+         \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mf}{6000.}\PY{p}{]}\PY{p}{)}
+         \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{SNR \PYZhy{} no delay line}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontproperties} \PY{o}{=} \PY{n}{font}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZdl{}Q\PYZus{}0\PYZdl{}}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontproperties} \PY{o}{=} \PY{n}{font}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}yticklabels}\PY{p}{(}\PY{n}{ax3}\PY{o}{.}\PY{n}{get\PYZus{}yticks}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{fontproperties} \PY{o}{=} \PY{n}{font}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}xticklabels}\PY{p}{(}\PY{n}{ax3}\PY{o}{.}\PY{n}{get\PYZus{}xticks}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{fontproperties} \PY{o}{=} \PY{n}{font}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}xticklabels}\PY{p}{(}\PY{n}{ax4}\PY{o}{.}\PY{n}{get\PYZus{}xticks}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{fontproperties} \PY{o}{=} \PY{n}{font}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         
+         \PY{n}{majorFormatter} \PY{o}{=} \PY{n}{matplotlib}\PY{o}{.}\PY{n}{ticker}\PY{o}{.}\PY{n}{FormatStrFormatter}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{majorFormatter}\PY{p}{)}
+         \PY{n}{ax4}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{majorFormatter}\PY{p}{)}
+         
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{majorFormatter}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax3.xaxis.set\PYZus{}major\PYZus{}locator(matplotlib.ticker.MaxNLocator(prune=\PYZsq{}lower\PYZsq{}))}
+         \PY{c}{\PYZsh{}ax4.xaxis.set\PYZus{}major\PYZus{}locator(matplotlib.ticker.MaxNLocator(prune=\PYZsq{}lower\PYZsq{}))}
+         
+         \PY{n}{fig}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{summary\PYZus{}plots.png}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{c}{\PYZsh{}mpld3.display()}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{snr\PYZus{}only.png}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Active_Resonator_Calculations_files/Active_Resonator_Calculations_13_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    \subsection{SNR by itself for delay line}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{f} \PY{o}{=} \PY{n}{interpolate}\PY{o}{.}\PY{n}{interp1d}\PY{p}{(}\PY{n}{Voltage\PYZus{}6}\PY{p}{,} \PY{n}{Q\PYZus{}6}\PY{p}{)}
+        \PY{n}{guess\PYZus{}Q\PYZus{}7} \PY{o}{=} \PY{p}{[}\PY{n}{f}\PY{p}{(}\PY{n}{v}\PY{p}{)} \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{v} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{Voltage\PYZus{}7}\PY{p}{)} \PY{k}{if} \PY{n}{Q\PYZus{}7}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{l+m+mf}{60000.}\PY{p}{]}
+        \PY{n}{corresponding\PYZus{}SNR\PYZus{}7} \PY{o}{=} \PY{p}{[}\PY{n}{s} \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{s} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{SNR\PYZus{}7}\PY{p}{)} \PY{k}{if} \PY{n}{Q\PYZus{}7}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{l+m+mf}{60000.}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}74}]:} \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{set\PYZus{}size\PYZus{}inches}\PY{p}{(}\PY{l+m+mf}{12.5}\PY{p}{,}\PY{l+m+mf}{7.5}\PY{p}{)}
+         \PY{n}{axes} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+         \PY{n}{ppl}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{axes}\PY{p}{,} \PY{n}{guess\PYZus{}Q\PYZus{}7}\PY{p}{,} \PY{n}{corresponding\PYZus{}SNR\PYZus{}7}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{120}\PY{p}{)}
+         \PY{n}{axes}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Q}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontproperties} \PY{o}{=} \PY{n}{font}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{28}\PY{p}{)}
+         \PY{n}{axes}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1500}\PY{p}{,} \PY{l+m+mi}{6000}\PY{p}{]}\PY{p}{)}
+         \PY{n}{axes}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{SNR}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontproperties} \PY{o}{=} \PY{n}{font}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{28}\PY{p}{)}
+         \PY{n}{axes}\PY{o}{.}\PY{n}{set\PYZus{}yticklabels}\PY{p}{(}\PY{n}{axes}\PY{o}{.}\PY{n}{get\PYZus{}yticks}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{fontproperties} \PY{o}{=} \PY{n}{font}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{28}\PY{p}{)}
+         \PY{n}{axes}\PY{o}{.}\PY{n}{set\PYZus{}xticklabels}\PY{p}{(}\PY{n}{axes}\PY{o}{.}\PY{n}{get\PYZus{}xticks}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{fontproperties} \PY{o}{=} \PY{n}{font}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{28}\PY{p}{)}
+         \PY{n}{majorFormatter} \PY{o}{=} \PY{n}{matplotlib}\PY{o}{.}\PY{n}{ticker}\PY{o}{.}\PY{n}{FormatStrFormatter}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{axes}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{majorFormatter}\PY{p}{)}
+         \PY{n}{axes}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{majorFormatter}\PY{p}{)}
+         \PY{n}{axes}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{matplotlib}\PY{o}{.}\PY{n}{ticker}\PY{o}{.}\PY{n}{MaxNLocator}\PY{p}{(}\PY{n}{prune}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{lower}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{fig}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{snr\PYZus{}delay\PYZus{}line.png}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Active_Resonator_Calculations_files/Active_Resonator_Calculations_16_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    \\*\textit{Usable Bandwidth (fraction)}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}75}]:} \PY{k}{def} \PY{n+nf}{effective\PYZus{}response}\PY{p}{(}\PY{n}{G}\PY{p}{,} \PY{n}{Q}\PY{p}{,} \PY{n}{t}\PY{p}{)}\PY{p}{:}
+             \PY{n}{denom} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{+} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{G} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{G}\PY{p}{)} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(} \PY{o}{\PYZhy{}} \PY{n}{omega\PYZus{}0} \PY{o}{*} \PY{n}{t} \PY{o}{/} \PY{n}{Q}\PY{p}{)} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{theta}\PY{p}{)}
+             \PY{k}{return} \PY{l+m+mi}{1} \PY{o}{/}\PY{n}{denom}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{omega\PYZus{}0} \PY{o}{/} \PY{l+m+mf}{2.}\PY{p}{,} \PY{l+m+mf}{1.5} \PY{o}{*} \PY{n}{omega\PYZus{}0}\PY{p}{,} \PY{n}{num}\PY{o}{=}\PY{l+m+mi}{25}\PY{p}{)}
+       \PY{n}{y} \PY{o}{=}
+       \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{Comparison }
+
+
+    Let us plot the simulated noise and measured noise vs Q. We'll probably
+have to scale the simulation to get it to fit with the measurements.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}147}]:} \PY{n}{fig}\PY{p}{,} \PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{ax2}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+          \PY{n}{fig}\PY{o}{.}\PY{n}{set\PYZus{}size\PYZus{}inches}\PY{p}{(}\PY{l+m+mf}{17.5}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}
+          \PY{n}{scale} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{/} \PY{l+m+mf}{1.e8}
+          \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{q\PYZus{}s}\PY{p}{,} \PY{n}{scale} \PY{o}{*} \PY{n}{powers\PYZus{}nodelay}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{ko}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZdl{}}\PY{l+s}{\PYZbs{}}\PY{l+s}{circ\PYZdl{}}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{simulation}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Q\PYZus{}6}\PY{p}{,} \PY{n}{Nl\PYZus{}6}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{go}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{noise}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{ax1}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Noise vs Q, no delay}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+
+        <ipython-input-147-e753c8fc2bc2> in <module>()
+          2 fig.set\_size\_inches(17.5,9)
+          3 scale = 1 / 1.e8
+    ----> 4 ax1.plot(q\_s, scale * powers\_nodelay, 'ko', marker='\$\textbackslash{}circ\$', label='simulation')
+          5 ax1.plot(Q\_6, Nl\_6,'go', label='noise')
+          6 ax1.legend()
+
+
+        TypeError: can't multiply sequence by non-int of type 'float'
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Active_Resonator_Calculations_files/Active_Resonator_Calculations_22_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} 
+\end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
